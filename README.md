@@ -41,6 +41,15 @@ Open http://localhost:3000 with your browser to see the result.
 
 You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`NEXT_PUBLIC_GITHUB_ENDPOINT_URL = `
+
+`NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN =`
+
+
 ## Deployment
 
 The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js.
