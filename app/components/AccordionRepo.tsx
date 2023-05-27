@@ -6,19 +6,7 @@ import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import { UserType } from "@/types";
 import useSWR from "swr";
 
-const fetcher = async (url: string, token: string) => {
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("An error occurred while fetching the data.");
-  }
-
-  return response.json();
-};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface IAccordion<T> {
   User: T;
@@ -28,11 +16,6 @@ const Accordion: FC<IAccordion<UserType>> = ({ User }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { data } = useSWR(User.repos_url, fetcher);
-
-  const { data: user } = useSWR(
-    [User.repos_url, process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN],
-    fetcher
-  );
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -53,6 +36,7 @@ const Accordion: FC<IAccordion<UserType>> = ({ User }) => {
           )}
         </span>
       </button>
+      {data && data.message && <span>{data.message}</span>}
       {data && isOpen && <RepoList RepoList={data} />}
     </div>
   );

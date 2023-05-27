@@ -37,18 +37,12 @@ const Home = () => {
         </div>
 
         {data && data.items && !error && (
-          <span className="font-bold">
-            showing users for {`"${inputValue}"`}
-          </span>
+          <span className="font-bold">showing users for {`"${query}"`}</span>
         )}
       </form>
       {isLoading && <span className="m-auto">loading...</span>}
-      {error && <span>{error}</span>}
+      {data && data.message && <span className="text-slate-500 mt-1">No Data Displayed</span>}
       {data && data.items && <AccordionListRepo Users={data?.items} />}
-
-      {!data && !isLoading && (
-        <span className="font-bold">no data to display</span>
-      )}
     </div>
   );
 };
