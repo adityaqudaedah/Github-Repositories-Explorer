@@ -29,21 +29,33 @@ const Home = () => {
     // setQuery(target.elements[0].value)
   };
   return (
-    <div>
+    <section>
       <form className="flex flex-col space-y-2" onSubmit={onSubmit}>
-        <div className="flex flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
+        {/* search & input */}
+        <div className="w-full flex flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:w-1/2">
           <Search onChangeEvent={onChangeEvent} value={inputValue} />
           <SearchButton />
         </div>
-
+        {/* show result */}
         {data && data.items && !error && (
           <span className="font-bold">showing users for {`"${query}"`}</span>
         )}
       </form>
-      {isLoading && <span className="m-auto">loading...</span>}
-      {data && data.message && <span className="text-slate-500 mt-1">No Data Displayed</span>}
+
+      {data && data.message && (
+        <div className="flex flex-row w-full h-screen">
+          <span className="text-slate-500 m-auto">No Data Displayed</span>
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="flex flex-row w-full h-screen">
+          {isLoading && <span className="m-auto font-bold">loading...</span>}
+        </div>
+      )}
+
       {data && data.items && <AccordionListRepo Users={data?.items} />}
-    </div>
+    </section>
   );
 };
 
