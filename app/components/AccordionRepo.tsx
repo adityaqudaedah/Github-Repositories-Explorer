@@ -36,7 +36,6 @@ const Accordion: FC<IAccordion<UserType>> = ({ User }) => {
           )}
         </span>
       </button>
-      {data && data.message && <span>{data.message}</span>}
       {data && isOpen && <RepoList RepoList={data} />}
     </div>
   );

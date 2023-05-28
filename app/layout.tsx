@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="p-2 bg-gray-100">
-        <div className="h-screen overflow-auto bg-white p-2 rounded">
+        <div className="h-screen overflow-auto bg-white p-4 rounded m-auto sm:w-3/4">
           {children}
         </div>
       </body>
